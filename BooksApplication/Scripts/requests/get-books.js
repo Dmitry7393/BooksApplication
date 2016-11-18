@@ -12,7 +12,7 @@ function GetBooksByGenre(genreName) {
             WriteResponse(data);
         },
         error: function (xhr, status, error) {
-            alert(xhr);
+            console.log(xhr);
         }
     });
 }

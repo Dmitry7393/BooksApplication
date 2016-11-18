@@ -9,7 +9,7 @@
             genreID = data;
         },
         error: function (xhr, status, error) {
-            alert(xhr);
+            console.log(xhr);
         }
     });
     return genreID;

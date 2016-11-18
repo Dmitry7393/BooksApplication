@@ -23,10 +23,16 @@ namespace BooksApplication.Controllers
             return db.Books;
         }
         [HttpGet]
-        public IQueryable<Book> GetBooksByGenre(string title)
+        public IQueryable<Book> GetBooksByGenre(string genre)
         {
-            int genreID = db.Genres.Where(n => n.Name == title).Select(field => field.GenreID).SingleOrDefault();
+            int genreID = db.Genres.Where(n => n.Name == genre).Select(field => field.GenreID).SingleOrDefault();
             return db.Books.Where(id => id.GenreId == genreID);
+        }
+        [HttpGet]
+        public int GetCountOfBooks(string genre)
+        {
+            int genreID = db.Genres.Where(n => n.Name == genre).Select(field => field.GenreID).SingleOrDefault();
+            return db.Books.Where(id => id.GenreId == genreID).Count();
         }
         // GET: api/Books/5
         [ResponseType(typeof(Book))]

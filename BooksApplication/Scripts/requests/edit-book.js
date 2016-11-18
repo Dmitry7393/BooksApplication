@@ -23,6 +23,7 @@ function EditBook() {
     var genreName = GetCurrentSelectedGenre("listGenresEditing");
     var genreID = GetGenreID_ByName(genreName);
 
+    var scope = angular.element(document.getElementById("MainWrap")).scope();
     // получаем новые значения для редактируемой книги
     var book = {
         BookID: $('#editId').val(),
@@ -38,10 +39,15 @@ function EditBook() {
         data: JSON.stringify(book),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            GetBooksByGenre(GetCurrentSelectedGenre("dropDownListGenres"));
+            //If user changes genre of book, it will be moved to other category 
+            //decrease count of books in current genre and increase in a new
+            scope.$apply(function () {
+                scope.changeGenre(genreName);
+            });
+            GetBooksByGenre(scope.tabs[scope.selectedTab].genre);
         },
         error: function (xhr, status, error) {
-            alert(xhr);
+            console.log(xhr);
         }
     });
 }

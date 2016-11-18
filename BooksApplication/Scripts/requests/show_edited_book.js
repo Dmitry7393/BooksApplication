@@ -1,6 +1,5 @@
 ﻿// Show data of edited book
 function ShowBook(book) {
-    console.log("ShowBook");
     if (book != null) {
         $("#createBlock").css('display', 'none');
         $("#editBlock").css('display', 'block');

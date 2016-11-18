@@ -1,10 +1,11 @@
 ﻿// Add new book
 function AddBook() {
     // Getting values for new book
-    var element = document.getElementById("listGenres");
-    var genreName = element.options[element.selectedIndex].value;
+    var selectedGenre;
+    var scope = angular.element(document.getElementById("MainWrap")).scope();
+        selectedGenre = scope.tabs[scope.selectedTab].genre;
+        var genreID = GetGenreID_ByName(selectedGenre);
 
-    var genreID = GetGenreID_ByName(genreName);
     var book = {
         Name: $('#addName').val(),
         Author: $('#addAuthor').val(),
@@ -19,7 +20,11 @@ function AddBook() {
         data: JSON.stringify(book),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            GetBooksByGenre(GetCurrentSelectedGenre("dropDownListGenres"));
+            scope.$apply(function () {
+                scope.increaseNumberOfBooks();
+            });
+            var selectedGenre = scope.tabs[scope.selectedTab].genre;
+                GetBooksByGenre(selectedGenre);
         },
         error: function (xhr, status, error) {
             console.log(xhr);

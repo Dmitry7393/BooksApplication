@@ -8,8 +8,17 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/style.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/style-tables.css" rel="stylesheet" media="screen" />
+
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular-tabs/app.js"></script>
 
     <script src="~/Scripts/requests/get-selected-genre.js"></script>
     <script src="~/Scripts/requests/get-genre.js"></script>
@@ -26,36 +35,23 @@
     <script src="~/Scripts/requests/edit-book.js"></script>
 
     <script src="~/Scripts/requests/show_edited_book.js"></script>
-    <style>
-        div {
-            display: inline-block;
-            margin: 20px;
-        }
-
-        #tableBlock {
-            width: auto;
-        }
-
-        #editBlock {
-            display: none;
-            float: right;
-        }
-
-        #createBlock {
-            float: right;
-        }
-    </style>
 </head>
-<body>
+<body ng-app="tabDemo">
     <div>
         <!--Add new genre-->
         <label>Enter new genre</label>
         <input id="textBoxGenre" type="text" />
         <button id="btnAddGenre">Add genre</button>
-        <br />
-
-        <select id="dropDownListGenres"></select>
     </div>
+    <br />
+    <div role="tabpanel" ng-controller="tabCtrl" id="MainWrap">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-repeat="tab in tabs" ng-click="selectTab($index)" ng-class="{'active':selectedTab == $index}">
+                <a data-target="#tab" aria-controls="home" role="tab" data-toggle="tab">{{tab.genre}}  {{tab.countBooks}}</a>
+            </li>
+        </ul>
+    </div>
+   
     <br />
     <div id="tableBlock"></div>
 
@@ -79,8 +75,7 @@
             <tr><td><label>Автор: </label></td><td><input type="text" id="addAuthor" /></td></tr>
             <tr><td><label>Год: </label></td><td><input type="text" id="addYear" /></td></tr>
             <tr><td><label>Издательство: </label></td><td><input type="text" id="addPublisher" /></td></tr>
-            <tr><td><label>Жанр: </label></td><td><select id="listGenres"></select></td></tr>
-        </table>
+       </table>
         <button id="addBook" onclick="AddBook()">Сохранить</button>
     </div>
 </body>

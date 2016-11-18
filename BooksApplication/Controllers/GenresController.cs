@@ -23,9 +23,9 @@ namespace BooksApplication.Controllers
             return db.Genres;
         }
         [HttpGet]
-        public int GetGenreID(string title)
+        public int GetGenreID(string genre)
         {
-            return db.Genres.Where(n => n.Name == title).Select(field => field.GenreID).SingleOrDefault();
+            return db.Genres.Where(n => n.Name == genre).Select(field => field.GenreID).SingleOrDefault();
         }
         // GET: api/Genres/5
         [ResponseType(typeof(Genre))]

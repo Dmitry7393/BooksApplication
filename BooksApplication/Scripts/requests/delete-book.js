@@ -6,15 +6,20 @@ function DeleteItem(el) {
 }
 // Delete book 
 function DeleteBook(id) {
+    var scope = angular.element(document.getElementById("MainWrap")).scope();
     $.ajax({
         url: '/api/Books/' + id,
         type: 'DELETE',
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            GetBooksByGenre(GetCurrentSelectedGenre("dropDownListGenres"));
+            scope.$apply(function () {
+                scope.decreaseNumberOfBooks();
+            });
+            var selectedGenre = scope.tabs[scope.selectedTab].genre;
+            GetBooksByGenre(selectedGenre);
         },
         error: function (xhr, status, error) {
-            alert(xhr);
+            console.log(xhr);
         }
     });
 }

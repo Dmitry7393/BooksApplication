@@ -21,9 +21,10 @@ namespace BooksApplication
             );
             config.Routes.MapHttpRoute(
                name: "ActionApi",
-                routeTemplate: "api/{controller}/{action}/{title}",
-                defaults: new { title = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{genre}",
+                defaults: new { genre = RouteParameter.Optional }
               );
+            
         }
     }
 }

@@ -13,9 +13,6 @@ namespace BooksApplication
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            
-            BooksApplicationContext db = new BooksApplicationContext();
-            db.Database.Initialize(true);
         }
     }
 }
