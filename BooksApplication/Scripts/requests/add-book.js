@@ -20,6 +20,7 @@ function AddBook() {
         data: JSON.stringify(book),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
+            //Increase count of books in tab with Angular
             scope.$apply(function () {
                 scope.increaseNumberOfBooks();
             });

@@ -1,4 +1,5 @@
-﻿function GetGenreID_ByName(name) {
+﻿//Returns genre ID
+function GetGenreID_ByName(name) {
     var genreID;
     $.ajax({
         url: '/api/Genres/GetGenreID/' + name,

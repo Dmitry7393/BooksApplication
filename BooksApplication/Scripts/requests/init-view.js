@@ -43,9 +43,7 @@ function getCountBooksInTab(genre) {
     });
     return count;
 }
-console.log("global");
 window.addEventListener("load", function (e) {
-    console.log("window");
     setDataInTabs();
     
     $("#editBook").click(function (event) {
